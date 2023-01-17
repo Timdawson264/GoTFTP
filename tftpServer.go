@@ -82,7 +82,7 @@ func main() {
 	// enable single-port mode (experimental)
 	//  https://github.com/pin/tftp/blob/0161c5dd2e967493da88cfdf9426b9337afb60ee/server.go#L112
 	s.EnableSinglePort()
-	s.SetBlockSize(8192) 
+	s.SetBlockSize(512) 
 	// 512 (default) to 65465, advisory only, clamped by client, MTU, & single-port mode to 1372!
 	//	err := s.ListenAndServe(":69")		// blocks until s.Shutdown() is called
 	//	err := s.ListenAndServe(":6969")	// blocks until s.Shutdown() is called

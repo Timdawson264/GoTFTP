@@ -1,4 +1,4 @@
-module tftpServer
+module github.com/Timdawson264/GoTFTP
 
 go 1.17
 

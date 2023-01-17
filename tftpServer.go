@@ -49,15 +49,15 @@ func readHandler(filenameRRQ string, rf io.ReaderFrom) error {
 	laddr := rf.(tftp.RequestPacketInfo).LocalIP()
 
 	// chop off path & enforce it for file to read & served
-	filename := filepath.Join("/app/tftp", filepath.Base(filepath.Clean(filenameRRQ)))
+	filename := filepath.Join("/tftp", filepath.Base(filepath.Clean(filenameRRQ)))
 
 	fmt.Printf("RRQ %s > %s from %s  to %s \n", filenameRRQ, filename, raddr.String(), laddr.String())
 
 	// Check if the read request is allowed, or not
-	if !contains(allowedSuffixes, filepath.Ext(filename)) {
-		fmt.Fprintf(os.Stderr, "[DENIED] RRQ %s : suffix not allowed\n", filenameRRQ)
-		return fmt.Errorf("[DENIED] RRQ %s ", filenameRRQ)
-	}
+// 	if !contains(allowedSuffixes, filepath.Ext(filename)) {
+// 		fmt.Fprintf(os.Stderr, "[DENIED] RRQ %s : suffix not allowed\n", filenameRRQ)
+// 		return fmt.Errorf("[DENIED] RRQ %s ", filenameRRQ)
+// 	}
 
 	file, err := os.Open(filename)
 	if err != nil {

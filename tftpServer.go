@@ -82,13 +82,12 @@ func main() {
 	// enable single-port mode (experimental)
 	//  https://github.com/pin/tftp/blob/0161c5dd2e967493da88cfdf9426b9337afb60ee/server.go#L112
 	s.EnableSinglePort()
-	s.SetBlockSize(8192) // 512 (default) to 65465, advisory only, clamped by client, MTU, & single-port mode to 1372!
+	s.SetBlockSize(8192) 
+	// 512 (default) to 65465, advisory only, clamped by client, MTU, & single-port mode to 1372!
 	//	err := s.ListenAndServe(":69")		// blocks until s.Shutdown() is called
 	//	err := s.ListenAndServe(":6969")	// blocks until s.Shutdown() is called
-	// special for UDP on Fly.io, must bind to addr fly-global-services, see
-	//  https://fly.io/docs/app-guides/udp-and-tcp/#let-s-see-some-code
 	//err := s.ListenAndServe(fmt.Sprintf("fly-global-services:%d", 6969))	// blocks until s.Shutdown() is called
-	err := s.ListenAndServe("fly-global-services:69") // blocks until s.Shutdown() is called
+	err := s.ListenAndServe(":6969") // blocks until s.Shutdown() is called
 	//	err := s.ListenAndServe("fly-global-services:6969")	// blocks until s.Shutdown() is called
 	if err != nil {
 		fmt.Fprintf(os.Stdout, "[ERROR] tftServer: %v\n", err)

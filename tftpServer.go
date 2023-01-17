@@ -49,7 +49,8 @@ func readHandler(filenameRRQ string, rf io.ReaderFrom) error {
 	laddr := rf.(tftp.RequestPacketInfo).LocalIP()
 
 	// chop off path & enforce it for file to read & served
-	filename := filepath.Join("/tftp", filepath.Base(filepath.Clean(filenameRRQ)))
+	//filename := filepath.Join("/tftp", filepath.Base(filepath.Clean(filenameRRQ)))
+	filename := filepath.Join( "/tftp", filepath.Clean(filenameRRQ) )
 
 	fmt.Printf("RRQ %s > %s from %s  to %s \n", filenameRRQ, filename, raddr.String(), laddr.String())
 
